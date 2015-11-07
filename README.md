@@ -157,8 +157,6 @@ t   Type and name of a variable or typedef as "typeref:" field [enabled]
 ```
 
 ##Reference
-[ctags](http://ctags.sourceforge.net/)
-
-[Generate Ctags Files for C/C++ Source Files and All of Their Included Header Files](https://www.topbug.net/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/)
-
-[ctags ignore lists for libc6, libstdc++ and boost](http://stackoverflow.com/questions/5626188/ctags-ignore-lists-for-libc6-libstdc-and-boost)
+- [ctags](http://ctags.sourceforge.net/)
+- [Generate Ctags Files for C/C++ Source Files and All of Their Included Header Files](https://www.topbug.net/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/)
+- [ctags ignore lists for libc6, libstdc++ and boost](http://stackoverflow.com/questions/5626188/ctags-ignore-lists-for-libc6-libstdc-and-boost)
