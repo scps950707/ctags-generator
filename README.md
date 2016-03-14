@@ -22,6 +22,44 @@ identifier-list
 ```
 
 
+##ctags --list-kinds=c
+
+
+|Kinds|Description|
+|---------|-------------------|
+|d|macro definitions|
+|e|enumerators (values inside an enumeration)|
+|f|function definitions|
+|g|enumeration names|
+|l|local variables [off]|
+|m|class, struct, and union members|
+|n|namespaces|
+|p|function prototypes [off]|
+|s|structure names|
+|t|typedefs|
+|u|union names|
+|v|variable definitions|
+|x|external and forward variable declarations [off]|
+
+
+##--fields=[+|-]flags
+
+|Kinds|Description|
+|---------|-------------------|
+|a|Access (or export) of class members
+|f|File-restricted scoping [enabled]
+|i|Inheritance information
+|k|Kind of tag as a single letter [enabled]
+|K|Kind of tag as full name
+|l|Language of source file containing tag
+|m|Implementation information
+|n|Line number of tag definition
+|s|Scope of tag definition [enabled]
+|S|Signature of routine (e.g. prototype or parameter list)
+|z|Include the "kind:" key in kind field
+|t|Type and name of a variable or typedef as "typeref:" field [enabled]
+
+
 ###Example
 ```sh
 ctags -R .
@@ -104,43 +142,6 @@ map <F10> :<C-u>call TagFileIncluded()<CR>
 ```sh
 ls -d -1 $PWD/*.h
 ```
-
-##ctags --list-kinds=c
-
-
-|Enabled|Kinds|Description|
-|------|---------|-------------------|
-|<li>[X]</li>|d|macro definitions|
-|<li>[x]</li>|e|enumerators (values inside an enumeration)|
-|<li>[x]</li>|f|function definitions|
-|<li>[x]</li>|g|enumeration names|
-|<li>[ ]</li>|l|local variables [off]|
-|<li>[ ]</li>|m|class, struct, and union members|
-|<li>[ ]</li>|n|namespaces|
-|<li>[x]</li>|p|function prototypes [off]|
-|<li>[x]</li>|s|structure names|
-|<li>[x]</li>|t|typedefs|
-|<li>[x]</li>|u|union names|
-|<li>[ ]</li>|v|variable definitions|
-|<li>[x]</li>|x|external and forward variable declarations [off]|
-
-
-##--fields=[+|-]flags
-
-|Enabled|Kinds|Description|
-|------|---------|-------------------|
-|<li>[X]</li>|a|Access (or export) of class members
-|<li>[ ]</li>|f|File-restricted scoping [enabled]
-|<li>[X]</li>|i|Inheritance information
-|<li>[ ]</li>|k|Kind of tag as a single letter [enabled]
-|<li>[ ]</li>|K|Kind of tag as full name
-|<li>[ ]</li>|l|Language of source file containing tag
-|<li>[ ]</li>|m|Implementation information
-|<li>[ ]</li>|n|Line number of tag definition
-|<li>[ ]</li>|s|Scope of tag definition [enabled]
-|<li>[X]</li>|S|Signature of routine (e.g. prototype or parameter list)
-|<li>[ ]</li>|z|Include the "kind:" key in kind field
-|<li>[ ]</li>|t|Type and name of a variable or typedef as "typeref:" field [enabled]
 
 
 ##Reference
