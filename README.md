@@ -49,7 +49,7 @@ function! TagFullDepend()
         \| sed -e ''s/[\\ ]/\n/g'' 
         \| sed -e ''/^$/d'' -e ''/\.o:[ \t]*$/d'' 
         \| ctags -L - --sort=yes --c-kinds=defgpstux --fields=+iaS --extra=+q 
-        \-I __attribute__,__attribute_malloc__,__attribute_pure__,__wur,__THROW '
+        \ -I __attribute__,__attribute_malloc__,__attribute_pure__,__wur,__THROW '
   execute '!'.command
 endfunction
 ```
@@ -84,7 +84,7 @@ function! TagFileIncluded()
         \| grep -f myincludeheaders 
         \| sort -u 
         \| ctags -L - --sort=yes --c-kinds=defgpstux --fields=+iaS --extra=+q 
-        \-I __attribute__,__attribute_malloc__,__attribute_pure__,__wur,__THROW '
+        \ -I __attribute__,__attribute_malloc__,__attribute_pure__,__wur,__THROW '
   let remove_tmp = ''
   let remove_tmp = 'rm myincludeheaders'
   execute '!'.find_include.' && '.generate_ctags.' && '.remove_tmp
