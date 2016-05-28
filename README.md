@@ -79,16 +79,20 @@ defect:tags to large,so much deep or useless information
 
 command:
 ```sh
-gcc -M  *.[ch] | sed -e 's/[\\ ]/\n/g'|sed -e '/^$/d' -e '/\.o:[ \t]*$/d'| grep -f myincludeheaders | sort -u | ctags -L - --sort=yes --c-kinds=defgpstuxls --fields=+iaS --extra=+q -I __attribute__,__attribute_malloc__,__attribute_pure__,__wur,__THROW
+ls -R | grep '\..*[ch]p*p*' | xargs gcc -M | sed 's/[\\ ]/\n/g' | sed '/^$/d;/\.o:[ \t]*$/d' | sort -u | ctags -L - --sort=yes --c-kinds=defgpstux --fields=+iaS --extra=+q -I __attribute__,__attribute_malloc__,__attribute_pure__,__wur,__THROW
 ```
 vim script:
 ```sh
 function! TagFullDepend()
   let command = ''
-  let command = ' gcc -M *.[ch] 
-        \| sed -e ''s/[\\ ]/\n/g'' 
-        \| sed -e ''/^$/d'' -e ''/\.o:[ \t]*$/d'' 
-        \| ctags -L - --sort=yes --c-kinds=defgpstux --fields=+iaS --extra=+q 
+  let command = '
+        \ls -R
+        \| grep ''\..*[ch]p*p*''
+        \| xargs gcc -M
+        \| sed ''s/[\\ ]/\n/g''
+        \| sed ''/^$/d;/\.o:[ \t]*$/d''
+        \| sort -u
+        \| ctags -L - --sort=yes --c-kinds=defgpstux --fields=+iaS --extra=+q
         \ -I __attribute__,__attribute_malloc__,__attribute_pure__,__wur,__THROW '
   execute '!'.command
 endfunction
@@ -101,29 +105,31 @@ defect:maybe some informations are ignored
 
 command:
 ```sh
-sed -n '/#include/p' *.[ch] | sed -e 's/[<>"" ]//g' | sed -e 's/#include//g' | sed -e 's/^.*\///g' | sort -u > myincludeheaders
-gcc -M  *.[ch] | sed -e 's/[\\ ]/\n/g'|sed -e '/^$/d' -e '/\.o:[ \t]*$/d'| grep -f myincludeheaders | sort -u | ctags -L - --sort=yes --c-kinds=defgpstux --fields=+iaS --extra=+q -I __attribute__,__attribute_malloc__,__attribute_pure__,__wur,__THROW
-rm myincludeheaders
+ls -R | grep '\..*[ch]p*p*' | xargs sed -n '/include/p' | sed 's/#include//g;s/[>< ]//g' | sort -u > myheaders
+ls -R | grep '\..*[ch]p*p*' | xargs gcc -M | sed 's/[\\ ]/\n/g' | sed '/^$/d;/\.o:[ \t]*$/d' | grep -f myheaders | sort -u | ctags -L - --sort=yes --c-kinds=defgpstux --fields=+iaS --extra=+q -I __attribute__,__attribute_malloc__,__attribute_pure__,__wur,__THROW
+rm myheaders
 ```
 vim script
 ```sh
 function! TagFileIncluded()
   let find_include = ''
   let find_include = '
-        \sed -n ''/\#include/p'' *.[ch] 
-        \| sed -e ''s/[<>"" ]//g'' 
-        \| sed -e ''s/\#include//g'' 
-        \| sed -e ''s/^.*\///g'' 
-        \| sort -u 
+        \ls -R
+        \| grep ''\..*[ch]p*p*''
+        \| xargs sed -n ''/include/p''
+        \| sed ''s/\#include//g;s/[>< ]//g''
+        \| sort -u
         \ > myincludeheaders '
   let generate_ctags = ''
   let generate_ctags = '
-        \gcc -M *.[ch] 
-        \| sed -e ''s/[\\ ]/\n/g'' 
-        \| sed -e ''/^$/d'' -e ''/\.o:[ \t]*$/d'' 
-        \| grep -f myincludeheaders 
-        \| sort -u 
-        \| ctags -L - --sort=yes --c-kinds=defgpstux --fields=+iaS --extra=+q 
+        \ls -R
+        \| grep ''\..*[ch]p*p*''
+        \| xargs gcc -M
+        \| sed ''s/[\\ ]/\n/g''
+        \| sed ''/^$/d;/\.o:[ \t]*$/d''
+        \| grep -f myincludeheaders
+        \| sort -u
+        \| ctags -L - --sort=yes --c-kinds=defgpstux --fields=+iaS --extra=+q
         \ -I __attribute__,__attribute_malloc__,__attribute_pure__,__wur,__THROW '
   let remove_tmp = ''
   let remove_tmp = 'rm myincludeheaders'
